@@ -2,13 +2,11 @@ import { Editor } from '@monaco-editor/react'
 import { createServer } from 'miragejs'
 import React, { useState } from 'react'
 
-// Mock server with MirageJS
 createServer({
 	routes() {
 		this.post('/api/execute', (schema, request) => {
 			const { language, code } = JSON.parse(request.requestBody)
 
-			// Mocked responses for the example
 			if (language === 'python' && code.includes('print')) {
 				return { status: 'success', output: 'Hello, world!\n' }
 			} else if (language === 'go' && code.includes('fmt.Println')) {
@@ -59,7 +57,6 @@ const App = () => {
 				</label>
 			</div>
 
-			{/* Code Editor */}
 			<Editor
 				height='300px'
 				language={language}
@@ -68,7 +65,6 @@ const App = () => {
 				onChange={value => setCode(value || '')}
 			/>
 
-			{/* Run Button */}
 			<button
 				style={{
 					marginTop: '10px',
@@ -83,7 +79,6 @@ const App = () => {
 				Run
 			</button>
 
-			{/* Result Display */}
 			<pre
 				style={{
 					marginTop: '20px',
